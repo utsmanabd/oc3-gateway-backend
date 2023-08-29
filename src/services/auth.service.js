@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
-
+const bcrypt = require('bcrypt')
 const SECRET_KEY = process.env.SECRET_KEY;
+const SALT_ROUNDS = 10
 
 const generateToken = (userData) => {
   return jwt.sign(userData, SECRET_KEY, { expiresIn: "24h" });
@@ -30,6 +31,16 @@ const verifyToken = (req, res, next) => {
   });
 };
 
+encryptPassword = async (password) => {
+  try {
+    const salt = await bcrypt.genSalt(SALT_ROUNDS);
+    const hash = await bcrypt.hash(password, salt);
+    return hash;
+  } catch (err) {
+    throw new Error('Error encrypting password:', err);
+  }
+}
+
 const accessControl = (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*')
   next()
@@ -38,5 +49,6 @@ const accessControl = (req, res, next) => {
 module.exports = {
   generateToken,
   verifyToken,
-  accessControl
+  accessControl,
+  encryptPassword
 }
