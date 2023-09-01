@@ -4,7 +4,7 @@ const SECRET_KEY = process.env.SECRET_KEY;
 const SALT_ROUNDS = 10
 
 const generateToken = (userData) => {
-  return jwt.sign(userData, SECRET_KEY, { expiresIn: '1h' });
+  return jwt.sign(userData, SECRET_KEY, { expiresIn: '24h' });
 };
 
 const updateToken = (userData) => {
