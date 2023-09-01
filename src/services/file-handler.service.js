@@ -16,9 +16,9 @@ const storage = (filepath, type) => {
 const imageFilter = (req, file, cb) => {
     const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png'];
     if (allowedMimeTypes.includes(file.mimetype)) {
-      cb(null, true); // Izinkan file diunggah
+      cb(null, true);
     } else {
-      cb(new Error('This file type is not allowed.'), false); // Tolak file
+      cb(new Error('This file type is not allowed.'), false);
     }
   };
 

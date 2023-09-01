@@ -4,8 +4,12 @@ const SECRET_KEY = process.env.SECRET_KEY;
 const SALT_ROUNDS = 10
 
 const generateToken = (userData) => {
-  return jwt.sign(userData, SECRET_KEY, { expiresIn: "24h" });
+  return jwt.sign(userData, SECRET_KEY, { expiresIn: '1h' });
 };
+
+const updateToken = (userData) => {
+  return jwt.sign(userData, SECRET_KEY)
+}
 
 const verifyToken = (req, res, next) => {
   let token = req.headers.authorization;
@@ -50,5 +54,6 @@ module.exports = {
   generateToken,
   verifyToken,
   accessControl,
-  encryptPassword
+  encryptPassword,
+  updateToken
 }
