@@ -28,6 +28,7 @@ const login = async (req, res) => {
         nik: user[0].nik,
         name: user[0].name,
         role_id: user[0].role_id,
+        role_name: user[0].role_name,
         role_detail: user[0].role_detail,
         photo: user[0].photo,
       },
