@@ -18,4 +18,6 @@ login = async (nik) =>
     )
   );
 
-module.exports = {login}
+insertUser = async (data) => await db("mst_user").insert(data)
+
+module.exports = { login, insertUser }
